@@ -1,10 +1,47 @@
 body {
+  margin: 0;
   font-family: Arial;
-  text-align: center;
-  background: #0f172a;
+  background: linear-gradient(135deg, #0f172a, #020617);
   color: white;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
 }
 
 h1 {
   color: orange;
+  font-size: 32px;
+}
+
+.tagline {
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #111827;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255,165,0,0.2);
+}
+
+#total {
+  font-size: 28px;
+  color: #22c55e;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #1f2937;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
 }

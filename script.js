@@ -1,3 +1,4 @@
+let userAddress = null;
 const CONTRACT = "YOUR_ION_CONTRACT";
 const BURN = "0x000000000000000000000000000000000000dEaD";
 const API_KEY = "YOUR_BSCSCAN_API_KEY";
@@ -15,9 +16,17 @@ async function fetchBurns() {
       const from = tx.from;
       const amount = tx.value / 1e18;
 
+      if (from.toLowerCase() === userAddress?.toLowerCase()) {
+  userTotal += amount;
+      }
       if (!burns[from]) burns[from] = 0;
       burns[from] += amount;
     });
+    if (userAddress) {
+  let p = document.createElement("p");
+  p.innerText = "🔥 You burned: " + userTotal.toFixed(2) + " ION";
+  document.body.appendChild(p);
+    }
 
     let total = 0;
     Object.values(burns).forEach(v => total += v);
@@ -43,3 +52,26 @@ async function fetchBurns() {
 }
 
 fetchBurns();
+let userTotal = 0;
+async function connectWallet() {
+  if (window.ethereum) {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts"
+      });
+
+      userAddress = accounts[0];
+
+      document.getElementById("wallet").innerText =
+        "Connected: " + userAddress.slice(0,6) + "...";
+
+    } catch (err) {
+      alert("Connection failed");
+    }
+  } else {
+    alert("Install MetaMask / Trust Wallet");
+  }
+}
+
+document.getElementById("connectBtn")
+  .addEventListener("click", connectWallet);

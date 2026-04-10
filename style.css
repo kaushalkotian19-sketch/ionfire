@@ -45,3 +45,17 @@ li {
   padding: 10px;
   border-radius: 8px;
 }
+
+button {
+  background: orange;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background: #f97316;
+}
